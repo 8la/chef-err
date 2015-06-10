@@ -13,8 +13,6 @@ By itself, the default recipe will create a virtual environment, install Err int
 
 Because chat service configuration tends to be organization-specific, this cookbook is intended to be used as a "library cookbook" within a "wrapper cookbook" that, at a minimum, overrides the default config.py template with one suitable for using Err in your organization.
 
-*Stay tuned for an example.*
-
 ## Plugins
 
 Plugins for Err can be automatically installed from a git repository by adding a hash to the `node['err']['plugins']` array.
@@ -48,6 +46,10 @@ The default recipe will iterate over plugins listed in this array and attempt to
 # Recipes
 
 `default` - wrap this puppy up in a cookbook specific to your organization
+
+# Custom Matcher
+
+This cookbook has a custom matcher for the err_plugin LWRP. Supports the install action.
 
 # Author
 
