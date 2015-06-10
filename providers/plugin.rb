@@ -1,16 +1,15 @@
 # Lifted from the Python community cookbook, on which we depend
 def which_pip(nr)
-  if (nr.respond_to?("virtualenv") && nr.virtualenv)
-    ::File.join(nr.virtualenv,'/bin/pip')
-  elsif node['python']['install_method'].eql?("source")
-    ::File.join(node['python']['prefix_dir'], "/bin/pip")
+  if nr.respond_to?('virtualenv') && nr.virtualenv
+    ::File.join(nr.virtualenv, '/bin/pip')
+  elsif node['python']['install_method'].eql?('source')
+    ::File.join(node['python']['prefix_dir'], '/bin/pip')
   else
     'pip'
   end
 end
 
 action :install do
-
   Chef::Log.debug("Err: installing packages for #{new_resource.name} plugin: #{new_resource.packages.inspect}")
   new_resource.packages.each do |pkg|
     package pkg do
@@ -22,7 +21,7 @@ action :install do
   pip_cmd = which_pip(new_resource)
   reqs = ::File.join(plugin_path, 'requirements.txt')
 
-  Chef::Log.debug("Err: installing any required python modules based on requirements.txt")
+  Chef::Log.debug('Err: installing any required python modules based on requirements.txt')
   execute "install #{new_resource.name} plugin requirements" do
     command <<-EOH
     if [ -f #{reqs} ];
@@ -47,7 +46,7 @@ action :install do
   end
 
   Chef::Log.debug("Err: adding path #{plugin_path} to node.run_state['err_plugin_paths']")
-  node.run_state['err_plugin_paths'] ||= Array.new
+  node.run_state['err_plugin_paths'] ||= []
   node.run_state['err_plugin_paths'] << plugin_path
 
   new_resource.updated_by_last_action(plug.updated_by_last_action?)
