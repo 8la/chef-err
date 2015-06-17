@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rake'
 gem 'chefspec', '~> 4.2.0'
 gem 'foodcritic', '~> 4.0.0'
 gem 'rubocop', '~> 0.30.0'
