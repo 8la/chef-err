@@ -10,5 +10,3 @@ env:
   - CI=travisci
 script:
 - bundle exec rake ci
-notifications:
-  email: false
