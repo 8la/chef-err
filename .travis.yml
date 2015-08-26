@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+- 2.1.4
+env:
+  matrix:
+  - CHEF_VERSION=12.2.1
+  global:
+  - CI=travisci
+script:
+- bundle exec rake ci
